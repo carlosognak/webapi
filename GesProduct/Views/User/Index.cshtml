@@ -1,0 +1,52 @@
+﻿@model IEnumerable<GesProduct.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Utilisateurs</h2>
+
+<p>
+    <a asp-controller="User" asp-action="Create" class="popup btn btn-primary" style="margin-bottom:20px; margin-top:20px;">Ajouter Nouveau Utilisateur</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                IdUser
+            </th>
+            <th>
+                Nom de l'utilisateur
+            </th>
+            <th>
+                Prénom de l'utilisateur
+            </th>
+
+            <th>login</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrenUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit/" + item.IdUser, "User") |
+                @Html.ActionLink("Détails", "Details/" + item.IdUser, "User") |
+                @Html.ActionLink("Supprimer", "Delete/" + item.IdUser, "User")
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<GesProduct.Models.Category>
+
+@{
+    ViewData["Title"] = "Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Microsoft.AspNetCore.Http;
+
+<h2><b>Categorie de Produit </b></h2>
+@*<div style="float:right; color:forestgreen;">
+    Bienvenue @Context.Session.GetString("Username")!
+    </div>*@
+
+<p>
+    <a asp-controller="Category" asp-action="Create" class="popup btn btn-primary" style="margin-bottom:20px; margin-top:20px;">Ajouter Nouvelle Categorie</a>
+</p>
+<div class="container">
+    <table class="table" id="myTable">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    IDCategorie
+                </th>
+                <th>
+                    Nom de la Categorie
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nomcat)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Modifier", "Edit/" + item.IdCat, "Category")|
+                        @Html.ActionLink("Détails", "Details/" + item.IdCat, "Category") |
+                        @Html.ActionLink("Supprimer", "Delete/" + item.IdCat, "Category")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<GesProduct.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Produits</h2>
+
+<p>
+    <a asp-controller="Product" asp-action="Create" class="popup btn btn-primary" style="margin-bottom:20px; margin-top:20px;">Ajouter Nouveau Produit</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID du Produit
+            </th>
+            <th>
+                Nom du Produit
+            </th>
+            <th>
+                Description du Produit
+            </th>
+            <th>
+                Catégorie de produit
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomPro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DesPro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Nomcat)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit/" + item.IdPro, "Product") |
+                @Html.ActionLink("Détails", "Details/" + item.IdPro, "Product") |
+                @Html.ActionLink("Supprimer", "Delete/" + item.IdPro, "Product")
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

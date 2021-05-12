@@ -1,0 +1,49 @@
+﻿@model GesProduct.Models.User
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/InscriptionLayout.cshtml";
+}
+@using Microsoft.AspNetCore.Http;
+
+<h2><b>Création des Utilisateurs</b></h2>
+@*<div style="float:right; color:forestgreen;">
+    Bienvenue @Context.Session.GetString("Username")!
+</div>*@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NomUser" class="control-label">Nom</label>
+                <input asp-for="NomUser" class="form-control" />
+                <span asp-validation-for="NomUser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrenUser" class="control-label">Prénom</label>
+                <input asp-for="PrenUser" class="form-control" />
+                <span asp-validation-for="PrenUser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Login" class="control-label">Login</label>
+                <input asp-for="Login" class="form-control" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mdp" class="control-label">Mot de passe</label>
+                <input asp-for="Mdp" class="form-control" />
+                <span asp-validation-for="Mdp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Valider" class="btn btn-success" />
+                <a asp-controller="User" asp-action="Index" style="margin-left:218px;" class="popup btn btn-info">Retour</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

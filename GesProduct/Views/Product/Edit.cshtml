@@ -1,0 +1,66 @@
+﻿@model GesProduct.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Modifier le Produit</h2>
+@*<img src="http://localhost:54120/wwwroot/uploads/img/48462b065ebb4ee5b45964a7d99c3d4a.PNG" alt="IMG" />*@
+<h4>Produit</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" style="display:none;">
+                <label asp-for="IdPro" class="control-label">IDProduit:</label>
+                <input asp-for="IdPro" class="form-control" />
+                <span asp-validation-for="IdPro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomPro" class="control-label">Nom du Produit:</label>
+                <input asp-for="NomPro" class="form-control" />
+                <span asp-validation-for="NomPro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DesPro" class="control-label">Des Produit:</label>
+                <input asp-for="DesPro" class="form-control" />
+                <span asp-validation-for="DesPro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImagePro" class="control-label">Image</label>
+                <input asp-for="ImagePro" class="form-control" type="file" />
+                <span asp-validation-for="ImagePro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCat" class="control-label">Categorie:</label>
+                <select asp-for="IdCat" class="form-control">
+                    @foreach (var cat in ViewBag.Listcat)
+                    {
+                        if (@cat.IdCat == Model.IdCat)
+                        {
+                            <option selected value="@cat.IdCat">@cat.Nomcat</option>
+
+                        }
+                        else
+                        {
+                            <option value="@cat.IdCat">@cat.Nomcat</option>
+                        }
+
+                    }
+                </select>
+                <span asp-validation-for="IdCat" class="text-danger"></span>
+                <span asp-validation-for="IdCat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Valider" class="btn btn-success" />
+                <a asp-controller="Product" asp-action="Index" style="margin-left:218px;" class="popup btn btn-info">Retour</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

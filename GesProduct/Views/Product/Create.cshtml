@@ -1,0 +1,67 @@
+﻿@model GesProduct.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2><b>Création du Produit</b></h2>
+
+<h4>Produits</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="NomPro" class="control-label">Nom du produit</label>
+                <input asp-for="NomPro" name="NomPro" class="form-control" />
+                <span asp-validation-for="NomPro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DesPro" class="control-label">Descri du Produit</label>
+                <input asp-for="DesPro" name="DesPro" class="form-control" />
+                <span asp-validation-for="DesPro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImagePro" class="control-label">Image</label>
+                <input asp-for="ImagePro" name="ImagePro" id="profile-img" type="file" form-control" />
+                <span asp-validation-for="ImagePro" class="text-danger"></span>
+            </div><img src="" id="profile-img-tag" width="160" style="margin-left:190px; position:relative" />
+            <div class="form-group">
+                <label asp-for="IdCat" class="control-label">Catégorie de Produit</label>
+                <select asp-for="IdCat" class="form-control"> 
+                @foreach (var cat in ViewBag.Listcat)
+			        {
+			         <option value="@cat.IdCat">@cat.Nomcat</option>
+			        } 
+                </select>
+                <span asp-validation-for="IdCat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Valider"  class="btn btn-success" />
+                <a asp-controller="Product" asp-action="Index"  style="margin-left:218px;" class="popup btn btn-info">Retour</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#profile-img-tag').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#profile-img").change(function(){
+        readURL(this);
+    });
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

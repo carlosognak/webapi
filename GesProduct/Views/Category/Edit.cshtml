@@ -1,0 +1,36 @@
+﻿@model GesProduct.Models.Category
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Modifier la Catégorie</h2>
+
+<h4>Categorie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" style="display:none; ">
+                <label asp-for="IdCat" class="control-label" >IdCatégorie</label>
+                <input asp-for="IdCat" class="form-control" />
+                <span asp-validation-for="IdCat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nomcat" class="control-label">Nom Catégorie</label>
+                <input asp-for="Nomcat" class="form-control" />
+                <span asp-validation-for="Nomcat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Valider" class="btn btn-success" />
+                <a asp-controller="Category" asp-action="Index" style="margin-left:218px;" class="popup btn btn-info">Retour</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

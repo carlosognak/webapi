@@ -1,0 +1,53 @@
+﻿@model GesProduct.Models.Product
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Suppression</h2>
+
+<h3>Etes vous sûr de vouloir supprimer ce produit ?</h3>
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdPro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NomPro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NomPro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DesPro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DesPro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ImagePro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Category.Nomcat)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+
+        <input type="submit" value="Supprimer" class="btn btn-danger" />
+        @*<a asp-action="Index">Retour</a>*@
+        <a asp-controller="Product" asp-action="Index" class="popup btn btn-primary" style="margin-bottom:20px; margin-top:20px; margin-left:10px;">Retour</a>
+    </form>
+</div>
